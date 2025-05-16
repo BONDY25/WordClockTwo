@@ -1,4 +1,8 @@
+using System.Diagnostics;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WordClockTwo
 {
@@ -6,13 +10,20 @@ namespace WordClockTwo
     {
 
         private System.Windows.Forms.Timer _timer;
+        private System.Timers.Timer StopTimer = new System.Timers.Timer();
+
+        private Stopwatch stopwatch = new Stopwatch();
         public int mode = 1;
 
         public ClockForm()
         {
             InitializeComponent();
+
+            StopTimer.Interval = 100; // 1 second
+            StopTimer.Elapsed += timer_Tick;
             UpdateTime();
             StartTimer();
+
         }
 
         // Start Timer----------------------------------------------------------------------------------
@@ -207,6 +218,113 @@ namespace WordClockTwo
             dateString = $"{dayWord} The {dayNumber} of {month}, {year}"; // Full Date String
 
             return dateString;
+        }
+
+        // Timer event handler for updating the elapsed time label ----------------------------------------------------
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            // Update the elapsed time label
+            long elapsedMilliseconds = stopwatch.ElapsedMilliseconds;
+            TimeSpan elapsedTime = TimeSpan.FromMilliseconds(elapsedMilliseconds);
+
+            string elapsedTimeText = elapsedTime.ToString("hh\\:mm\\:ss");
+            lblStopWatch.Invoke(new Action(() => lblStopWatch.Text = elapsedTimeText));
+        }
+
+        //==========================================================================================================
+        // Mouse Enter/Leave Events
+        //==========================================================================================================
+
+        private void btnStart_MouseEnter(object sender, EventArgs e)
+        {
+            if (!stopwatch.IsRunning)
+            {
+                btnStart.BackColor = Color.LimeGreen;
+                btnStart.ForeColor = Color.Black;
+                Cursor = Cursors.Hand;
+            }
+        }
+
+        private void btnStart_MouseLeave(object sender, EventArgs e)
+        {
+            if (!stopwatch.IsRunning)
+            {
+                btnStart.BackColor = Color.Black;
+                btnStart.ForeColor = Color.White;
+                Cursor = Cursors.Default;
+            }
+        }
+
+        private void btnStop_MouseEnter(object sender, EventArgs e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                btnStop.BackColor = Color.Red;
+                btnStop.ForeColor = Color.Black;
+                Cursor = Cursors.Hand;
+            }
+        }
+
+        private void btnStop_MouseLeave(object sender, EventArgs e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                btnStop.BackColor = Color.Black;
+                btnStop.ForeColor = Color.White;
+                Cursor = Cursors.Default;
+            }
+        }
+
+        //==========================================================================================================
+        // Buttons Clicked
+        //==========================================================================================================
+
+        // Start button Clicked --------------------------------------------------------------------------------------------
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            if (!stopwatch.IsRunning)
+            {
+                // Start the stopwatch and the timer
+                stopwatch.Start();
+                StopTimer.Start();
+
+                // Update button colors for visual feedback
+                btnStart.BackColor = Color.LimeGreen;
+                btnStart.ForeColor = Color.Black;
+                btnStop.BackColor = Color.Black;
+                btnStop.ForeColor = Color.White;
+                btnStop.Text = "Stop";
+                Cursor = Cursors.Default;
+            }
+        }
+
+        // Stop button Clicked --------------------------------------------------------------------------------------------
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            if (stopwatch.IsRunning)
+            {
+                // Stop the stopwatch and the timer
+                stopwatch.Stop();
+                StopTimer.Stop();
+                btnStop.BackColor = Color.Red;
+                btnStop.ForeColor = Color.Black;
+                btnStop.Text = "Reset";
+                btnStart.BackColor = Color.Black;
+                btnStart.ForeColor = Color.White;
+                Cursor = Cursors.Default;
+            }
+            else
+            {
+                // Reset the stopwatch and the timer
+                stopwatch.Reset();
+                lblStopWatch.Text = "00:00:00";
+                btnStop.BackColor = Color.Black;
+                btnStop.ForeColor = Color.White;
+                btnStop.Text = "Stop";
+                btnStart.BackColor = Color.Black;
+                btnStart.ForeColor = Color.White;
+                Cursor = Cursors.Default;
+            }
         }
     }
 }
