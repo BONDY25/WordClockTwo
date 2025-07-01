@@ -2,7 +2,7 @@
 
 ## It tells the time... but in words!
 
-### This project is kinda ironic condisering im dyslexic...
+### This project is kinda ironic condisering I'm dyslexic...
 
 #### Plot
 
