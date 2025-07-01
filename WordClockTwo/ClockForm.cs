@@ -54,7 +54,7 @@ namespace WordClockTwo
         // Fade Method 1/2----------------------------------------------------------------------------------
         private async Task FadeLabelAsync(Label label, string newText, int steps = 20, int interval = 25)
         {
-            Color startColor = label.ForeColor;
+            Color startColor = Color.White;
             Color endColor = Color.FromArgb(0, 0, 0, 0); // Transparent color
 
             // Fade out
@@ -142,6 +142,16 @@ namespace WordClockTwo
                 if (minute == 0)
                 {
                     timeString = $"{NumberToWords(hour % 12 == 0 ? 12 : hour % 12)} O'Clock {period}";
+                }
+                else if (minute == 1)
+                {
+                    timeString =
+                        $"{NumberToWords(minute)} Minute Past {NumberToWords(hour % 12 == 0 ? 12 : hour % 12)} {period}";
+                }
+                else if (minute == 59)
+                {
+                    timeString =
+                        $"{NumberToWords(60 - minute)} Minute To {NumberToWords((hour + 1) % 12 == 0 ? 12 : (hour + 1) % 12)} {period}";
                 }
                 else if (minute == 15)
                 {

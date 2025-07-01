@@ -34,8 +34,6 @@
             btnStart = new Button();
             btnStop = new Button();
             lblStopWatch = new Label();
-            panel1 = new Panel();
-            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblTime
@@ -62,11 +60,11 @@
             // 
             // btnStart
             // 
-            btnStart.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnStart.Anchor = AnchorStyles.Left;
             btnStart.FlatStyle = FlatStyle.Flat;
             btnStart.Font = new Font("Impact", 20F, FontStyle.Regular, GraphicsUnit.Point);
             btnStart.ForeColor = Color.White;
-            btnStart.Location = new Point(758, 232);
+            btnStart.Location = new Point(12, 758);
             btnStart.Name = "btnStart";
             btnStart.Size = new Size(142, 61);
             btnStart.TabIndex = 2;
@@ -78,11 +76,11 @@
             // 
             // btnStop
             // 
-            btnStop.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnStop.Anchor = AnchorStyles.Left;
             btnStop.FlatStyle = FlatStyle.Flat;
             btnStop.Font = new Font("Impact", 20F, FontStyle.Regular, GraphicsUnit.Point);
             btnStop.ForeColor = Color.White;
-            btnStop.Location = new Point(919, 232);
+            btnStop.Location = new Point(12, 834);
             btnStop.Name = "btnStop";
             btnStop.Size = new Size(142, 61);
             btnStop.TabIndex = 2;
@@ -94,25 +92,15 @@
             // 
             // lblStopWatch
             // 
-            lblStopWatch.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblStopWatch.Font = new Font("Impact", 40F, FontStyle.Regular, GraphicsUnit.Point);
+            lblStopWatch.Anchor = AnchorStyles.Left;
+            lblStopWatch.Font = new Font("Impact", 30F, FontStyle.Regular, GraphicsUnit.Point);
             lblStopWatch.ForeColor = Color.White;
-            lblStopWatch.Location = new Point(0, 123);
+            lblStopWatch.Location = new Point(12, 686);
             lblStopWatch.Name = "lblStopWatch";
-            lblStopWatch.Size = new Size(1813, 106);
+            lblStopWatch.Size = new Size(380, 69);
             lblStopWatch.TabIndex = 3;
             lblStopWatch.Text = "Press Start";
-            lblStopWatch.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lblStopWatch);
-            panel1.Controls.Add(btnStop);
-            panel1.Controls.Add(btnStart);
-            panel1.Location = new Point(12, 472);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1819, 368);
-            panel1.TabIndex = 4;
+            lblStopWatch.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ClockForm
             // 
@@ -120,7 +108,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1843, 907);
-            Controls.Add(panel1);
+            Controls.Add(btnStop);
+            Controls.Add(lblStopWatch);
+            Controls.Add(btnStart);
             Controls.Add(lblDate);
             Controls.Add(lblTime);
             Font = new Font("Impact", 9F, FontStyle.Regular, GraphicsUnit.Point);
@@ -129,7 +119,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "WordClockTwo";
             WindowState = FormWindowState.Maximized;
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -140,6 +129,5 @@
         private Button btnStart;
         private Button btnStop;
         private Label lblStopWatch;
-        private Panel panel1;
     }
 }
