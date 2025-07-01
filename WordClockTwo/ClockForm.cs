@@ -10,6 +10,7 @@ namespace WordClockTwo
     {
 
         private System.Windows.Forms.Timer _timer;
+        private System.Windows.Forms.Timer _secondsTimer;
         private System.Timers.Timer StopTimer = new System.Timers.Timer();
 
         private Stopwatch stopwatch = new Stopwatch();
@@ -31,7 +32,11 @@ namespace WordClockTwo
         {
             // Create a timer that ticks every second
             _timer = new System.Windows.Forms.Timer();
+            _secondsTimer = new System.Windows.Forms.Timer();
             _timer.Interval = 1000; // 1 second
+            _secondsTimer.Interval = 15;
+            _secondsTimer.Tick += (s, e) => UpdateSecondsBar();
+
             _timer.Tick += (s, e) =>
             {
                 if (DateTime.Now.Second == 0) // only update on new minute
@@ -41,6 +46,24 @@ namespace WordClockTwo
             };
 
             _timer.Start();
+            _secondsTimer.Start();
+        }
+
+        // Update Seconds ----------------------------------------------------------------------------------
+        private void UpdateSecondsBar()
+        {
+            int milliseconds = DateTime.Now.Second * 1000 + DateTime.Now.Millisecond;
+            int totalMilliseconds = 60 * 1000;
+
+            double percent = milliseconds / (double)totalMilliseconds;
+
+            int containerWidth = panelSecondsContainer.Width;
+            int newWidth = (int)(containerWidth * percent);
+
+            // Optional: add a clamp
+            newWidth = Math.Min(newWidth, containerWidth);
+
+            panelSecondsBar.Width = newWidth;
         }
 
         // Update Time Label ----------------------------------------------------------------------------------
@@ -48,7 +71,7 @@ namespace WordClockTwo
         {
             string newTime = ConvertTimeToWords(DateTime.Now);
             await FadeLabelAsync(lblTime, newTime);
-            lblDate.Text = ConvertDateToWords(DateTime.Now); ;
+            lblDate.Text = ConvertDateToWords(DateTime.Now);
         }
 
         // Fade Method 1/2----------------------------------------------------------------------------------

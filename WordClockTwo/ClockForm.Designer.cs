@@ -34,6 +34,9 @@
             btnStart = new Button();
             btnStop = new Button();
             lblStopWatch = new Label();
+            panelSecondsBar = new Panel();
+            panelSecondsContainer = new Panel();
+            panelSecondsContainer.SuspendLayout();
             SuspendLayout();
             // 
             // lblTime
@@ -52,7 +55,7 @@
             // 
             lblDate.Font = new Font("Impact", 12F, FontStyle.Regular, GraphicsUnit.Point);
             lblDate.ForeColor = Color.White;
-            lblDate.Location = new Point(12, 9);
+            lblDate.Location = new Point(12, 43);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(383, 25);
             lblDate.TabIndex = 1;
@@ -102,12 +105,31 @@
             lblStopWatch.Text = "Press Start";
             lblStopWatch.TextAlign = ContentAlignment.MiddleLeft;
             // 
+            // panelSecondsBar
+            // 
+            panelSecondsBar.Anchor = AnchorStyles.Left;
+            panelSecondsBar.BackColor = Color.White;
+            panelSecondsBar.Location = new Point(3, 6);
+            panelSecondsBar.Name = "panelSecondsBar";
+            panelSecondsBar.Size = new Size(200, 13);
+            panelSecondsBar.TabIndex = 5;
+            // 
+            // panelSecondsContainer
+            // 
+            panelSecondsContainer.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelSecondsContainer.Controls.Add(panelSecondsBar);
+            panelSecondsContainer.Location = new Point(12, 12);
+            panelSecondsContainer.Name = "panelSecondsContainer";
+            panelSecondsContainer.Size = new Size(1819, 28);
+            panelSecondsContainer.TabIndex = 6;
+            // 
             // ClockForm
             // 
             AutoScaleDimensions = new SizeF(6F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1843, 907);
+            Controls.Add(panelSecondsContainer);
             Controls.Add(btnStop);
             Controls.Add(lblStopWatch);
             Controls.Add(btnStart);
@@ -119,6 +141,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "WordClockTwo";
             WindowState = FormWindowState.Maximized;
+            panelSecondsContainer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -129,5 +152,7 @@
         private Button btnStart;
         private Button btnStop;
         private Label lblStopWatch;
+        private Panel panelSecondsBar;
+        private Panel panelSecondsContainer;
     }
 }
