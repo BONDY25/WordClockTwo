@@ -22,4 +22,4 @@ Here is my WinForms mockup as a proof of concept, I even added a stopwatch for f
 #### Links
 
 * [YouTube Video](https://www.youtube.com/watch?v=yJ4v-yxuPk8)
-* [Super overprice clock](https://clockforward.com/qlocktwo/?u=ey)
+* [Super overpriced clock](https://clockforward.com/qlocktwo/?u=ey)
