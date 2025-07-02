@@ -36,19 +36,20 @@
             lblStopWatch = new Label();
             panelSecondsBar = new Panel();
             panelSecondsContainer = new Panel();
+            lblWeek = new Label();
             panelSecondsContainer.SuspendLayout();
             SuspendLayout();
             // 
             // lblTime
             // 
             lblTime.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            lblTime.Font = new Font("Impact", 70F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTime.Font = new Font("Impact", 69.75F, FontStyle.Regular, GraphicsUnit.Point);
             lblTime.ForeColor = Color.White;
             lblTime.Location = new Point(12, 34);
             lblTime.Name = "lblTime";
             lblTime.Size = new Size(1819, 587);
             lblTime.TabIndex = 0;
-            lblTime.Text = "WORD CLOCK TWO";
+            lblTime.Text = "Hello There!";
             lblTime.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblDate
@@ -57,7 +58,7 @@
             lblDate.ForeColor = Color.White;
             lblDate.Location = new Point(12, 43);
             lblDate.Name = "lblDate";
-            lblDate.Size = new Size(383, 25);
+            lblDate.Size = new Size(383, 28);
             lblDate.TabIndex = 1;
             lblDate.Text = "Date";
             // 
@@ -65,7 +66,7 @@
             // 
             btnStart.Anchor = AnchorStyles.Left;
             btnStart.FlatStyle = FlatStyle.Flat;
-            btnStart.Font = new Font("Impact", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStart.Font = new Font("Impact", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnStart.ForeColor = Color.White;
             btnStart.Location = new Point(12, 758);
             btnStart.Name = "btnStart";
@@ -81,7 +82,7 @@
             // 
             btnStop.Anchor = AnchorStyles.Left;
             btnStop.FlatStyle = FlatStyle.Flat;
-            btnStop.Font = new Font("Impact", 20F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStop.Font = new Font("Impact", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnStop.ForeColor = Color.White;
             btnStop.Location = new Point(12, 834);
             btnStop.Name = "btnStop";
@@ -123,12 +124,23 @@
             panelSecondsContainer.Size = new Size(1819, 28);
             panelSecondsContainer.TabIndex = 6;
             // 
+            // lblWeek
+            // 
+            lblWeek.Font = new Font("Impact", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lblWeek.ForeColor = Color.White;
+            lblWeek.Location = new Point(12, 71);
+            lblWeek.Name = "lblWeek";
+            lblWeek.Size = new Size(383, 28);
+            lblWeek.TabIndex = 7;
+            lblWeek.Text = "Week";
+            // 
             // ClockForm
             // 
             AutoScaleDimensions = new SizeF(6F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1843, 907);
+            Controls.Add(lblWeek);
             Controls.Add(panelSecondsContainer);
             Controls.Add(btnStop);
             Controls.Add(lblStopWatch);
@@ -154,5 +166,6 @@
         private Label lblStopWatch;
         private Panel panelSecondsBar;
         private Panel panelSecondsContainer;
+        private Label lblWeek;
     }
 }
